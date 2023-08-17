@@ -52,7 +52,7 @@
       "elevate": false,
       "experimental.retroTerminalEffect": false,
       "font": {
-        "face": "Hack NF",
+        "face": "Hack Nerd Font Mono",
         "size": 12.0
       },
       "opacity": 60,
