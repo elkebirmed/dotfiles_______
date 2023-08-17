@@ -5,11 +5,7 @@ function Install-Dotfiles-Packages {
 }
 
 function Sync-Dotfiles {
-    Push-Location (Split-Path -Parent $PROFILE)
-    Invoke-Expression ". ./sync-dotfiles.ps1"
-    Pop-Location
-
-    & $PROFILE
+    Invoke-Expression ". $env:USERPROFILE/dotfiles/files/windows/powershell/sync-dotfiles.ps1"
 }
 
 function which ($command) {
