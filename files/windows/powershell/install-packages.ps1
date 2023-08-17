@@ -45,6 +45,7 @@ $packagesIds = @(
 )
 
 foreach ($packageId in $packagesIds) {
+    Write-Host "Installing $packageId ..." -ForegroundColor Green
     winget install -e --id $packageId
 }
 
