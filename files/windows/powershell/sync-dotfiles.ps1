@@ -3,7 +3,7 @@ function Get-ScriptDirectory {
 }
 
 # Sync Windows Terminal settings
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 Set-Variable -Name "WT_SRC_FILE" -Value ("$(Get-ScriptDirectory)\..\settings\windows_terminal.json" | Convert-Path)
 Set-Variable -Name "WT_DEST_FILE" -Value "$env:USERPROFILE\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 Set-Variable -Name "WTP_DEST_FILE" -Value "$env:USERPROFILE\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json"
@@ -19,11 +19,23 @@ if (Test-Path -Path $WTP_DEST_FILE) {
 }
 
 # Sync PowerShell settings
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 Set-Variable -Name "PS_SRC_FILES" -Value ("$(Get-ScriptDirectory)\*" | Convert-Path)
 Set-Variable -Name "PS_DEST_DIR" -Value "$env:USERPROFILE\Documents\PowerShell"
 
 if (Test-Path -Path $PS_SRC_FILES) {
     Write-Host "Syncing PowerShell settings" -ForegroundColor Cyan
     Copy-Item -Path $PS_SRC_FILES -Destination $PS_DEST_DIR -Force -PassThru -Recurse
+}
+
+# Sync dotfiles
+# -----------------------------------------------------------------------------
+Set-Variable -Name "DOT_ALL_SRC_DIR" -Value ("$(Get-ScriptDirectory)\..\..\shared\home\*" | Convert-Path)
+Set-Variable -Name "DOT_WIN_SRC_DIR" -Value ("$(Get-ScriptDirectory)\..\..\windows\home\*" | Convert-Path)
+Set-Variable -Name "DOT_DEST_DIR" -Value "$env:USERPROFILE"
+
+if (Test-Path -Path $DOT_ALL_SRC_DIR) {
+    Write-Host "Syncing dotfiles" -ForegroundColor Cyan
+    Copy-Item -Path $DOT_ALL_SRC_DIR -Destination $DOT_DEST_DIR -Force -PassThru -Recurse
+    Copy-Item -Path $DOT_WIN_SRC_DIR -Destination $DOT_DEST_DIR -Force -PassThru -Recurse
 }
