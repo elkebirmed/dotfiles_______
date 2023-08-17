@@ -14,5 +14,6 @@
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+winget install -e --id Git.Git
 Invoke-RestMethod https://raw.githubusercontent.com/elkebirmed/dotfiles/main/install.ps1 | Invoke-Expression
 ```
