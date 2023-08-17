@@ -6,6 +6,7 @@ function Install-Dotfiles-Packages {
 
 function Sync-Dotfiles {
     Invoke-Expression ". $env:USERPROFILE/dotfiles/files/windows/powershell/sync-dotfiles.ps1"
+    Write-Host "Restart your shell" -ForegroundColor Red
 }
 
 function which ($command) {

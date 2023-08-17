@@ -14,3 +14,5 @@ else {
 # -----------------------------------------------------------------------------
 Invoke-Expression "$repoPath/files/windows/powershell/sync-dotfiles.ps1"
 Invoke-Expression "$repoPath/files/windows/powershell/install-packages.ps1"
+
+Write-Host "Restart your shell" -ForegroundColor Red
