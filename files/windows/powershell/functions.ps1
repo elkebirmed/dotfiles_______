@@ -13,3 +13,7 @@ function which ($command) {
     Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+
+function Remove-Items-Force-Recurse ($path) {
+    Remove-Item -Path $path -Recurse -Force -Confirm:$false
+}
